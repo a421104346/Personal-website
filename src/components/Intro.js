@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-const Hero = () => {
+const Intro = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -15,16 +15,16 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="hero">
-      <div className="hero-content">
+    <section id="home" className="intro">
+      <div className="intro-content">
         <h1>
-          Hello, I'm <span className="highlight">John Doe</span>
+          Hello, I'm <span className="highlight">Your Name</span>
         </h1>
-        <p className="hero-subtitle">Frontend Developer & Designer</p>
-        <p className="hero-description">
-          I love creating beautiful and functional websites and applications
+        <p className="intro-subtitle">Your Job Title</p>
+        <p className="intro-description">
+          Your personal description here - what you do and what you love
         </p>
-        <div className="hero-buttons">
+        <div className="intro-buttons">
           <button 
             className="btn btn-primary" 
             onClick={() => scrollToSection('projects')}
@@ -39,7 +39,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <div className="hero-image">
+      <div className="intro-image">
         <div className="profile-circle">
           <FontAwesomeIcon icon={faUser} />
         </div>
@@ -48,4 +48,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Intro;
