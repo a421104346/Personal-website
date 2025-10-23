@@ -1,71 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 import {
   faEnvelope,
   faPhone,
   faMapMarkerAlt,
+  faComments,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faGithub,
   faLinkedin,
-  faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
+  const navigate = useNavigate();
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
-
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simple validation
-    if (
-      !formData.name ||
-      !formData.email ||
-      !formData.subject ||
-      !formData.message
-    ) {
-      setSubmitStatus('error');
-      setIsSubmitting(false);
-      return;
-    }
-
-    // Simulate form submission
-    try {
-      // Here you would typically send the data to your backend
-      // For now, we'll just simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      });
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-      // Clear status after 3 seconds
-      setTimeout(() => setSubmitStatus(null), 3000);
-    }
+  const handleGoToMessageBoard = () => {
+    navigate('/messages');
   };
 
   const contactInfo = [
@@ -146,68 +97,23 @@ const Contact = () => {
             </div>
           </div>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-              />
+          <div className="message-board-redirect">
+            <div className="redirect-card">
+              <FontAwesomeIcon icon={faComments} className="redirect-icon" />
+              <h3>Share Your Thoughts!</h3>
+              <p>
+                If you have any suggestions, feedback, or just want to say
+                hello, please leave your opinion on our message board.
+              </p>
+              <button
+                className="btn btn-primary message-board-btn"
+                onClick={handleGoToMessageBoard}
+              >
+                <FontAwesomeIcon icon={faComments} />
+                Go to Message Board
+              </button>
             </div>
-            <div className="form-group">
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                name="subject"
-                placeholder="Subject"
-                value={formData.subject}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <textarea
-                name="message"
-                placeholder="Your Message"
-                rows="5"
-                value={formData.message}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-
-            {submitStatus === 'success' && (
-              <div className="form-message success">
-                Thank you for your message! I'll get back to you soon.
-              </div>
-            )}
-
-            {submitStatus === 'error' && (
-              <div className="form-message error">
-                Please fill in all required fields.
-              </div>
-            )}
-
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </section>
