@@ -7,10 +7,7 @@ import {
   faMapMarkerAlt,
   faComments,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  faGithub,
-  faLinkedin,
-} from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const Contact = () => {
   const navigate = useNavigate();

@@ -68,11 +68,10 @@ const Navbar = () => {
           <button className="nav-link" onClick={() => navigate('/messages')}>
             Messages
           </button>
-          <button
-            className="nav-link"
-            onClick={() => navigate('/chat')}
-          >
-            <span><FontAwesomeIcon icon={faRobot} /> AI Chat</span>
+          <button className="nav-link" onClick={() => navigate('/chat')}>
+            <span>
+              <FontAwesomeIcon icon={faRobot} /> AI Chat
+            </span>
           </button>
         </div>
 
