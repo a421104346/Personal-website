@@ -26,13 +26,14 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = sectionId => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 70;
+      const offsetTop =
+        element.getBoundingClientRect().top + window.pageYOffset - 70;
       window.scrollTo({
         top: offsetTop,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
     closeMenu();
@@ -44,40 +45,31 @@ const Navbar = () => {
         <div className="nav-logo">
           <h2>My Website</h2>
         </div>
-        
+
         <div className={`nav-menu ${isOpen ? 'active' : ''}`}>
-          <button 
-            className="nav-link" 
-            onClick={() => scrollToSection('home')}
-          >
+          <button className="nav-link" onClick={() => scrollToSection('home')}>
             Home
           </button>
-          <button 
-            className="nav-link" 
-            onClick={() => scrollToSection('about')}
-          >
+          <button className="nav-link" onClick={() => scrollToSection('about')}>
             About
           </button>
-          <button 
-            className="nav-link" 
+          <button
+            className="nav-link"
             onClick={() => scrollToSection('projects')}
           >
             Projects
           </button>
-          <button 
-            className="nav-link" 
+          <button
+            className="nav-link"
             onClick={() => scrollToSection('contact')}
           >
             Contact
           </button>
-          <button 
-            className="nav-link" 
-            onClick={() => navigate('/messages')}
-          >
+          <button className="nav-link" onClick={() => navigate('/messages')}>
             Messages
           </button>
-          <button 
-            className="nav-link chat-btn" 
+          <button
+            className="nav-link chat-btn"
             onClick={() => navigate('/chat')}
           >
             <FontAwesomeIcon icon={faRobot} />

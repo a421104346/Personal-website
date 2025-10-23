@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faArrowLeft, 
-  faPaperPlane, 
-  faUser, 
+import {
+  faArrowLeft,
+  faPaperPlane,
+  faUser,
   faCalendarAlt,
   faHeart,
-  faComment
+  faComment,
 } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
-import { collection, addDoc, getDocs, orderBy, query, serverTimestamp } from 'firebase/firestore';
+import {
+  collection,
+  addDoc,
+  getDocs,
+  orderBy,
+  query,
+  serverTimestamp,
+} from 'firebase/firestore';
 
 const MessageBoard = () => {
   const navigate = useNavigate();
@@ -18,7 +25,7 @@ const MessageBoard = () => {
   const [newMessage, setNewMessage] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -26,19 +33,22 @@ const MessageBoard = () => {
     const loadMessages = async () => {
       try {
         // Load messages from Firebase
-        const q = query(collection(db, 'messages'), orderBy('timestamp', 'desc'));
+        const q = query(
+          collection(db, 'messages'),
+          orderBy('timestamp', 'desc')
+        );
         const querySnapshot = await getDocs(q);
         const loadedMessages = [];
-        
-        querySnapshot.forEach((doc) => {
+
+        querySnapshot.forEach(doc => {
           const data = doc.data();
           loadedMessages.push({
             id: doc.id,
             ...data,
-            timestamp: data.timestamp?.toDate() || new Date()
+            timestamp: data.timestamp?.toDate() || new Date(),
           });
         });
-        
+
         setMessages(loadedMessages);
       } catch (error) {
         console.error('Error loading messages:', error);
@@ -46,25 +56,28 @@ const MessageBoard = () => {
         const mockMessages = [
           {
             id: 1,
-            name: "Test User - John",
-            message: "🔧 This is mock test data - Great portfolio! Love the AI chat feature. Very innovative!",
+            name: 'Test User - John',
+            message:
+              '🔧 This is mock test data - Great portfolio! Love the AI chat feature. Very innovative!',
             timestamp: new Date('2024-01-15'),
-            likes: 5
+            likes: 5,
           },
           {
             id: 2,
-            name: "Test User - Sarah",
-            message: "🔧 This is mock test data - The weather app is really well-designed. Clean UI and responsive design. Keep up the good work!",
+            name: 'Test User - Sarah',
+            message:
+              '🔧 This is mock test data - The weather app is really well-designed. Clean UI and responsive design. Keep up the good work!',
             timestamp: new Date('2024-01-14'),
-            likes: 3
+            likes: 3,
           },
           {
             id: 3,
-            name: "Test User - Mike",
-            message: "🔧 This is mock test data - Impressive projects! The personal website shows great attention to detail. Looking forward to seeing more of your work.",
+            name: 'Test User - Mike',
+            message:
+              '🔧 This is mock test data - Impressive projects! The personal website shows great attention to detail. Looking forward to seeing more of your work.',
             timestamp: new Date('2024-01-13'),
-            likes: 7
-          }
+            likes: 7,
+          },
         ];
         setMessages(mockMessages);
       }
@@ -73,14 +86,14 @@ const MessageBoard = () => {
     loadMessages();
   }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     setNewMessage({
       ...newMessage,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if (!newMessage.name.trim() || !newMessage.message.trim()) {
       alert('Please fill in your name and message.');
@@ -96,26 +109,28 @@ const MessageBoard = () => {
         email: newMessage.email.trim(),
         message: newMessage.message.trim(),
         timestamp: serverTimestamp(),
-        likes: 0
+        likes: 0,
       };
 
       // Add to Firebase
       const docRef = await addDoc(collection(db, 'messages'), messageToAdd);
-      
+
       // Add to local state with generated ID and current timestamp
       const localMessage = {
         id: docRef.id,
         ...messageToAdd,
-        timestamp: new Date()
+        timestamp: new Date(),
       };
       setMessages(prev => [localMessage, ...prev]);
-      
+
       // Reset form
       setNewMessage({ name: '', email: '', message: '' });
       alert('Thank you for your message! It has been posted successfully.');
     } catch (error) {
       console.error('Error saving message:', error);
-      alert('Sorry, there was an error posting your message. Please try again.');
+      alert(
+        'Sorry, there was an error posting your message. Please try again.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -125,13 +140,13 @@ const MessageBoard = () => {
     navigate('/');
   };
 
-  const formatDate = (date) => {
+  const formatDate = date => {
     return new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     }).format(date);
   };
 
@@ -157,7 +172,7 @@ const MessageBoard = () => {
         <div className="message-form-container">
           <h2>Leave a Message</h2>
           <p>Share your thoughts, feedback, or suggestions!</p>
-          
+
           <form onSubmit={handleSubmit} className="message-form">
             <div className="form-group">
               <input
@@ -170,7 +185,7 @@ const MessageBoard = () => {
                 disabled={isSubmitting}
               />
             </div>
-            
+
             <div className="form-group">
               <input
                 type="email"
@@ -181,7 +196,7 @@ const MessageBoard = () => {
                 disabled={isSubmitting}
               />
             </div>
-            
+
             <div className="form-group">
               <textarea
                 name="message"
@@ -193,9 +208,9 @@ const MessageBoard = () => {
                 disabled={isSubmitting}
               />
             </div>
-            
-            <button 
-              type="submit" 
+
+            <button
+              type="submit"
               className="submit-btn"
               disabled={isSubmitting}
             >
@@ -215,7 +230,7 @@ const MessageBoard = () => {
             </div>
           ) : (
             <div className="messages-list">
-              {messages.map((message) => (
+              {messages.map(message => (
                 <div key={message.id} className="message-card">
                   <div className="message-header">
                     <div className="message-author">
@@ -227,11 +242,11 @@ const MessageBoard = () => {
                       <span>{formatDate(message.timestamp)}</span>
                     </div>
                   </div>
-                  
+
                   <div className="message-content">
                     <p>{message.message}</p>
                   </div>
-                  
+
                   <div className="message-actions">
                     <button className="like-btn">
                       <FontAwesomeIcon icon={faHeart} />

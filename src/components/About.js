@@ -5,19 +5,27 @@ const About = () => {
   const [animatedStats, setAnimatedStats] = useState({
     experience: 0,
     projects: 0,
-    technologies: 0
+    technologies: 0,
   });
   const aboutRef = useRef(null);
 
   const skills = [
-    'HTML5', 'CSS3', 'JavaScript', 'React', 'Vue.js', 
-    'Node.js', 'Python', 'Git', 'MongoDB', 'Express.js'
+    'HTML5',
+    'CSS3',
+    'JavaScript',
+    'React',
+    'Vue.js',
+    'Node.js',
+    'Python',
+    'Git',
+    'MongoDB',
+    'Express.js',
   ];
 
   const finalStats = {
     experience: 2,
     projects: 2,
-    technologies: 5
+    technologies: 5,
   };
 
   useEffect(() => {
@@ -59,7 +67,7 @@ const About = () => {
         }
         setAnimatedStats(prev => ({
           ...prev,
-          [key]: Math.floor(current)
+          [key]: Math.floor(current),
         }));
       }, stepTime);
     });
@@ -73,22 +81,24 @@ const About = () => {
           <div className="about-text">
             <h3>I'm a passionate developer</h3>
             <p>
-              I specialize in frontend development and love creating user-friendly interfaces 
-              using modern technologies. I believe that code should not only be functional 
-              but also elegant and readable.
+              I specialize in frontend development and love creating
+              user-friendly interfaces using modern technologies. I believe that
+              code should not only be functional but also elegant and readable.
             </p>
-            
+
             <div className="skills">
               <h4>Skills</h4>
               <div className="skill-tags">
                 {skills.map((skill, index) => (
-                  <span 
-                    key={skill} 
+                  <span
+                    key={skill}
                     className="skill-tag"
                     style={{
                       animationDelay: `${index * 0.1}s`,
                       opacity: isVisible ? 1 : 0,
-                      transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
+                      transform: isVisible
+                        ? 'translateY(0)'
+                        : 'translateY(20px)',
                     }}
                   >
                     {skill}
@@ -97,7 +107,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="about-stats">
             <div className="stat">
               <h3>{animatedStats.experience}+</h3>

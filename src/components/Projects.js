@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faLaptopCode, 
-  faChartBar, 
-  faExternalLinkAlt 
+import {
+  faLaptopCode,
+  faChartBar,
+  faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
@@ -13,30 +13,36 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "Weather App Development Challenge",
-      description: "A modern weather application built with React, featuring real-time weather data, location-based forecasts, and interactive weather maps with responsive design.",
+      title: 'Weather App Development Challenge',
+      description:
+        'A modern weather application built with React, featuring real-time weather data, location-based forecasts, and interactive weather maps with responsive design.',
       icon: faChartBar,
-      technologies: ["React", "JavaScript", "CSS3", "Weather API"],
-      githubUrl: "https://github.com/a421104346/Weather_App_Development_Challenge",
-      liveUrl: "http://reacttt-weather-app.s3-website-ap-southeast-2.amazonaws.com/"
+      technologies: ['React', 'JavaScript', 'CSS3', 'Weather API'],
+      githubUrl:
+        'https://github.com/a421104346/Weather_App_Development_Challenge',
+      liveUrl:
+        'http://reacttt-weather-app.s3-website-ap-southeast-2.amazonaws.com/',
     },
     {
       id: 2,
-      title: "Personal Website",
-      description: "A responsive personal portfolio website built with React, featuring an AI chat assistant, modern design, and smooth animations. Showcases projects and skills.",
+      title: 'Personal Website',
+      description:
+        'A responsive personal portfolio website built with React, featuring an AI chat assistant, modern design, and smooth animations. Showcases projects and skills.',
       icon: faLaptopCode,
-      technologies: ["React", "React Router", "OpenAI API", "CSS3"],
-      githubUrl: "https://github.com/a421104346/Personal-website",
-      liveUrl: "https://a421104346.github.io/Personal-website"
-    }
+      technologies: ['React', 'React Router', 'OpenAI API', 'CSS3'],
+      githubUrl: 'https://github.com/a421104346/Personal-website',
+      liveUrl: 'https://a421104346.github.io/Personal-website',
+    },
   ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
-            const projectId = parseInt(entry.target.getAttribute('data-project-id'));
+            const projectId = parseInt(
+              entry.target.getAttribute('data-project-id')
+            );
             setVisibleProjects(prev => [...new Set([...prev, projectId])]);
           }
         });
@@ -57,8 +63,8 @@ const Projects = () => {
       <div className="container">
         <h2 className="section-title">My Personal Projects</h2>
         <div className="projects-grid">
-          {projects.map((project) => (
-            <div 
+          {projects.map(project => (
+            <div
               key={project.id}
               className={`project-card ${visibleProjects.includes(project.id) ? 'visible' : ''}`}
               data-project-id={project.id}
@@ -70,21 +76,21 @@ const Projects = () => {
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
                 <div className="project-tech">
-                  {project.technologies.map((tech) => (
+                  {project.technologies.map(tech => (
                     <span key={tech}>{tech}</span>
                   ))}
                 </div>
                 <div className="project-links">
-                  <a 
-                    href={project.githubUrl} 
+                  <a
+                    href={project.githubUrl}
                     className="project-link"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <FontAwesomeIcon icon={faGithub} /> Code
                   </a>
-                  <a 
-                    href={project.liveUrl} 
+                  <a
+                    href={project.liveUrl}
                     className="project-link"
                     target="_blank"
                     rel="noopener noreferrer"

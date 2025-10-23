@@ -1,6 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane, faRobot, faUser, faArrowLeft, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPaperPlane,
+  faRobot,
+  faUser,
+  faArrowLeft,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -11,8 +17,8 @@ const ChatPage = () => {
       id: 1,
       text: "Hello! I'm your AI assistant. How can I help you today?",
       sender: 'ai',
-      timestamp: new Date()
-    }
+      timestamp: new Date(),
+    },
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +26,7 @@ const ChatPage = () => {
 
   // 滚动到消息底部
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -28,36 +34,41 @@ const ChatPage = () => {
   }, [messages]);
 
   // Call OpenAI API
-  const callOpenAI = async (userMessage) => {
+  const callOpenAI = async userMessage => {
     try {
       // Detect the language of user's message and set appropriate system prompt
-      const systemPrompt = "You are a helpful AI assistant. Please respond in the same language that the user is using. If the user writes in Chinese, respond in Chinese. If the user writes in English, respond in English. If the user writes in any other language, respond in that same language. Be natural and conversational.";
-      
-      const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-        model: "gpt-4o-mini",
-        messages: [
-          { role: "system", content: systemPrompt },
-          { role: "user", content: userMessage }
-        ],
-        max_tokens: 500,
-        temperature: 0.7
-      }, {
-        headers: {
-          'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
-          'Content-Type': 'application/json'
+      const systemPrompt =
+        'You are a helpful AI assistant. Please respond in the same language that the user is using. If the user writes in Chinese, respond in Chinese. If the user writes in English, respond in English. If the user writes in any other language, respond in that same language. Be natural and conversational.';
+
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          model: 'gpt-4o-mini',
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: userMessage },
+          ],
+          max_tokens: 500,
+          temperature: 0.7,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
         }
-      });
+      );
 
       return response.data.choices[0].message.content;
     } catch (error) {
       console.error('OpenAI API call failed:', error);
-      
+
       if (error.response?.status === 401) {
-        return "Sorry, the API key is invalid. Please check your OpenAI API configuration.";
+        return 'Sorry, the API key is invalid. Please check your OpenAI API configuration.';
       } else if (error.response?.status === 429) {
-        return "Too many requests. Please try again later.";
+        return 'Too many requests. Please try again later.';
       } else if (error.code === 'NETWORK_ERROR') {
-        return "Network connection error. Please check your internet connection.";
+        return 'Network connection error. Please check your internet connection.';
       } else {
         return "Sorry, I can't respond right now. Please try again later.";
       }
@@ -72,7 +83,7 @@ const ChatPage = () => {
       id: Date.now(),
       text: inputMessage.trim(),
       sender: 'user',
-      timestamp: new Date()
+      timestamp: new Date(),
     };
 
     // Add user message
@@ -82,12 +93,12 @@ const ChatPage = () => {
 
     // Get AI response
     const aiResponse = await callOpenAI(userMessage.text);
-    
+
     const aiMessage = {
       id: Date.now() + 1,
       text: aiResponse,
       sender: 'ai',
-      timestamp: new Date()
+      timestamp: new Date(),
     };
 
     // Add AI response
@@ -96,7 +107,7 @@ const ChatPage = () => {
   };
 
   // Handle keyboard events
-  const handleKeyPress = (e) => {
+  const handleKeyPress = e => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
@@ -110,8 +121,8 @@ const ChatPage = () => {
         id: 1,
         text: "Hello! I'm your AI assistant. How can I help you today?",
         sender: 'ai',
-        timestamp: new Date()
-      }
+        timestamp: new Date(),
+      },
     ]);
   };
 
@@ -141,28 +152,28 @@ const ChatPage = () => {
       {/* Chat content area */}
       <div className="chat-page-content">
         <div className="chat-page-messages">
-          {messages.map((message) => (
+          {messages.map(message => (
             <div
               key={message.id}
               className={`chat-message ${message.sender === 'user' ? 'user-message' : 'ai-message'}`}
             >
               <div className="message-avatar">
-                <FontAwesomeIcon 
-                  icon={message.sender === 'user' ? faUser : faRobot} 
+                <FontAwesomeIcon
+                  icon={message.sender === 'user' ? faUser : faRobot}
                 />
               </div>
               <div className="message-content">
                 <div className="message-text">{message.text}</div>
                 <div className="message-time">
-                  {message.timestamp.toLocaleTimeString('zh-CN', { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
+                  {message.timestamp.toLocaleTimeString('zh-CN', {
+                    hour: '2-digit',
+                    minute: '2-digit',
                   })}
                 </div>
               </div>
             </div>
           ))}
-          
+
           {/* Loading indicator */}
           {isLoading && (
             <div className="chat-message ai-message">
@@ -178,7 +189,7 @@ const ChatPage = () => {
               </div>
             </div>
           )}
-          
+
           <div ref={messagesEndRef} />
         </div>
 
@@ -187,7 +198,7 @@ const ChatPage = () => {
           <div className="chat-input-wrapper">
             <textarea
               value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
+              onChange={e => setInputMessage(e.target.value)}
               onKeyDown={handleKeyPress}
               placeholder="Type your message..."
               className="chat-input"

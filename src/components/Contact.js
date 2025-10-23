@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faEnvelope, 
-  faPhone, 
-  faMapMarkerAlt 
+import {
+  faEnvelope,
+  faPhone,
+  faMapMarkerAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { 
-  faGithub, 
-  faLinkedin, 
-  faTwitter 
+import {
+  faGithub,
+  faLinkedin,
+  faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 
 const Contact = () => {
@@ -16,26 +16,31 @@ const Contact = () => {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setIsSubmitting(true);
 
     // Simple validation
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.subject ||
+      !formData.message
+    ) {
       setSubmitStatus('error');
       setIsSubmitting(false);
       return;
@@ -46,13 +51,13 @@ const Contact = () => {
       // Here you would typically send the data to your backend
       // For now, we'll just simulate a successful submission
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       setSubmitStatus('success');
       setFormData({
         name: '',
         email: '',
         subject: '',
-        message: ''
+        message: '',
       });
     } catch (error) {
       setSubmitStatus('error');
@@ -67,39 +72,34 @@ const Contact = () => {
     {
       icon: faEnvelope,
       label: 'Email',
-      value: 'your.email@example.com',
-      href: 'mailto:your.email@example.com'
+      value: 'a421104346@gmail.com',
+      href: 'mailto:a421104346@gmail.com',
     },
     {
       icon: faPhone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      value: '0421234567',
+      href: 'tel:+61421234567',
     },
     {
       icon: faMapMarkerAlt,
       label: 'Location',
-      value: 'New York, NY',
-      href: null
-    }
+      value: 'Magill, 5072, SA, Australia',
+      href: null,
+    },
   ];
 
   const socialLinks = [
     {
       icon: faGithub,
       url: 'https://github.com/yourusername',
-      label: 'GitHub'
+      label: 'GitHub',
     },
     {
       icon: faLinkedin,
       url: 'https://linkedin.com/in/yourusername',
-      label: 'LinkedIn'
+      label: 'LinkedIn',
     },
-    {
-      icon: faTwitter,
-      url: 'https://twitter.com/yourusername',
-      label: 'Twitter'
-    }
   ];
 
   return (
@@ -110,10 +110,11 @@ const Contact = () => {
           <div className="contact-info">
             <h3>Let's work together</h3>
             <p>
-              If you have any project ideas or collaboration opportunities, 
-              feel free to reach out. I'd love to hear from you!
+              If you have any project ideas or collaboration opportunities, feel
+              free to email me. The phone number is not real, as I believe it is
+              more dangerous to share a phone number online.
             </p>
-            
+
             <div className="contact-details">
               {contactInfo.map((info, index) => (
                 <div key={index} className="contact-item">
@@ -131,9 +132,9 @@ const Contact = () => {
 
             <div className="social-links">
               {socialLinks.map((social, index) => (
-                <a 
+                <a
                   key={index}
-                  href={social.url} 
+                  href={social.url}
                   className="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -147,60 +148,60 @@ const Contact = () => {
 
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="name"
-                placeholder="Your Name" 
+                placeholder="Your Name"
                 value={formData.name}
                 onChange={handleInputChange}
-                required 
+                required
               />
             </div>
             <div className="form-group">
-              <input 
-                type="email" 
+              <input
+                type="email"
                 name="email"
-                placeholder="Your Email" 
+                placeholder="Your Email"
                 value={formData.email}
                 onChange={handleInputChange}
-                required 
+                required
               />
             </div>
             <div className="form-group">
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="subject"
-                placeholder="Subject" 
+                placeholder="Subject"
                 value={formData.subject}
                 onChange={handleInputChange}
-                required 
+                required
               />
             </div>
             <div className="form-group">
-              <textarea 
+              <textarea
                 name="message"
-                placeholder="Your Message" 
-                rows="5" 
+                placeholder="Your Message"
+                rows="5"
                 value={formData.message}
                 onChange={handleInputChange}
                 required
               />
             </div>
-            
+
             {submitStatus === 'success' && (
               <div className="form-message success">
                 Thank you for your message! I'll get back to you soon.
               </div>
             )}
-            
+
             {submitStatus === 'error' && (
               <div className="form-message error">
                 Please fill in all required fields.
               </div>
             )}
-            
-            <button 
-              type="submit" 
+
+            <button
+              type="submit"
               className="btn btn-primary"
               disabled={isSubmitting}
             >
