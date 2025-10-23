@@ -43,12 +43,12 @@ const Contact = () => {
   const socialLinks = [
     {
       icon: faGithub,
-      url: 'https://github.com/yourusername',
+      url: 'https://github.com/a421104346',
       label: 'GitHub',
     },
     {
       icon: faLinkedin,
-      url: 'https://linkedin.com/in/yourusername',
+      url: 'https://linkedin.com/in/shunyang-zhai-2180b3234',
       label: 'LinkedIn',
     },
   ];
