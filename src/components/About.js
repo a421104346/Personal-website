@@ -5,7 +5,6 @@ const About = () => {
   const [animatedStats, setAnimatedStats] = useState({
     experience: 0,
     projects: 0,
-    technologies: 0,
   });
   const aboutRef = useRef(null);
 
@@ -45,6 +44,7 @@ const About = () => {
 
     return () => {
       if (aboutRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         observer.unobserve(aboutRef.current);
       }
     };
@@ -115,11 +115,7 @@ const About = () => {
             </div>
             <div className="stat">
               <h3>{animatedStats.projects}+</h3>
-              <p>Completed Projects</p>
-            </div>
-            <div className="stat">
-              <h3>{animatedStats.technologies}+</h3>
-              <p>Technologies</p>
+              <p>Completed Personal Projects</p>
             </div>
           </div>
         </div>
