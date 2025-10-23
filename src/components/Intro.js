@@ -18,9 +18,9 @@ const Intro = () => {
     <section id="home" className="intro">
       <div className="intro-content">
         <h1>
-          Hello, I'm <span className="highlight">Your Name</span>
+          Hello, I'm <span className="highlight">Shunyang</span>
         </h1>
-        <p className="intro-subtitle">Your Job Title</p>
+        <p className="intro-subtitle">Software Engineer</p>
         <p className="intro-description">
           Your personal description here - what you do and what you love
         </p>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faRobot } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -67,6 +69,13 @@ const Navbar = () => {
             onClick={() => scrollToSection('contact')}
           >
             Contact
+          </button>
+          <button 
+            className="nav-link chat-btn" 
+            onClick={() => navigate('/chat')}
+          >
+            <FontAwesomeIcon icon={faRobot} />
+            AI Chat
           </button>
         </div>
 
