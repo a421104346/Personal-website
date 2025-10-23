@@ -590,7 +590,7 @@
   margin-right: 0.5rem;
 }
 
-/* 聊天页面样式 */
+/* chat page styles */
 .chat-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -598,7 +598,7 @@
   flex-direction: column;
 }
 
-/* 聊天页面头部 */
+/* chat page header */
 .chat-page-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;

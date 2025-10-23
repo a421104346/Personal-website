@@ -21,7 +21,7 @@ const Projects = () => {
       githubUrl:
         'https://github.com/a421104346/Weather_App_Development_Challenge',
       liveUrl:
-        'http://reacttt-weather-app.s3-website-ap-southeast-2.amazonaws.com/',
+        'https://main.d131zjotu2of9u.amplifyapp.com/',
     },
     {
       id: 2,
