@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faLaptopCode, 
-  faMobileAlt, 
   faChartBar, 
   faExternalLinkAlt 
 } from '@fortawesome/free-solid-svg-icons';
@@ -14,30 +13,21 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A modern e-commerce platform built with React and Node.js, featuring user authentication, payment integration, and admin dashboard.",
-      icon: faLaptopCode,
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      githubUrl: "https://github.com/yourusername/project1",
-      liveUrl: "https://project1-demo.com"
+      title: "Weather App Development Challenge",
+      description: "A modern weather application built with React, featuring real-time weather data, location-based forecasts, and interactive weather maps with responsive design.",
+      icon: faChartBar,
+      technologies: ["React", "JavaScript", "CSS3", "Weather API"],
+      githubUrl: "https://github.com/a421104346/Weather_App_Development_Challenge",
+      liveUrl: "http://reacttt-weather-app.s3-website-ap-southeast-2.amazonaws.com/"
     },
     {
       id: 2,
-      title: "Mobile Task Manager",
-      description: "A responsive task management application with drag-and-drop functionality, real-time updates, and team collaboration features.",
-      icon: faMobileAlt,
-      technologies: ["React", "Firebase", "Material-UI", "PWA"],
-      githubUrl: "https://github.com/yourusername/project2",
-      liveUrl: "https://project2-demo.com"
-    },
-    {
-      id: 3,
-      title: "Data Visualization Dashboard",
-      description: "An interactive dashboard for data analysis with real-time charts, filtering capabilities, and export functionality.",
-      icon: faChartBar,
-      technologies: ["D3.js", "React", "Python", "Flask"],
-      githubUrl: "https://github.com/yourusername/project3",
-      liveUrl: "https://project3-demo.com"
+      title: "Personal Website",
+      description: "A responsive personal portfolio website built with React, featuring an AI chat assistant, modern design, and smooth animations. Showcases projects and skills.",
+      icon: faLaptopCode,
+      technologies: ["React", "React Router", "OpenAI API", "CSS3"],
+      githubUrl: "https://github.com/a421104346/Personal-website",
+      liveUrl: "https://a421104346.github.io/Personal-website"
     }
   ];
 
@@ -65,7 +55,7 @@ const Projects = () => {
   return (
     <section id="projects" className="projects">
       <div className="container">
-        <h2 className="section-title">My Projects</h2>
+        <h2 className="section-title">My Personal Projects</h2>
         <div className="projects-grid">
           {projects.map((project) => (
             <div 
