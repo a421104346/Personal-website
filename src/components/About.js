@@ -16,7 +16,7 @@ const About = () => {
 
   const finalStats = {
     experience: 2,
-    projects: 10,
+    projects: 2,
     technologies: 5
   };
 

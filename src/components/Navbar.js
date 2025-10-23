@@ -71,6 +71,12 @@ const Navbar = () => {
             Contact
           </button>
           <button 
+            className="nav-link" 
+            onClick={() => navigate('/messages')}
+          >
+            Messages
+          </button>
+          <button 
             className="nav-link chat-btn" 
             onClick={() => navigate('/chat')}
           >
