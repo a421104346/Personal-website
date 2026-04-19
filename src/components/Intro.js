@@ -23,8 +23,8 @@ const Intro = () => {
         <p className="intro-subtitle">Software Engineer</p>
         <p className="intro-description">
           Welcome to my personal website! This site showcases my software
-          development projects and skills. You can explore my work, chat with an
-          AI assistant for questions. Feel free to connect with me!
+          development projects and skills. You can explore my work and feel free
+          to connect with me!
         </p>
         <div className="intro-buttons">
           <button
