@@ -2,38 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faLaptopCode,
-  faChartBar,
+  faServer,
   faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import portfolioProjects from '../data/portfolioProjects';
 
 const Projects = () => {
   const [visibleProjects, setVisibleProjects] = useState([]);
-
-  const projects = [
-    {
-      id: 1,
-      title: 'Weather App Development Challenge',
-      description:
-        'A modern weather application built with React, featuring real-time weather data, location-based forecasts, and interactive weather maps with responsive design.',
-      icon: faChartBar,
-      technologies: ['React', 'JavaScript', 'CSS3', 'Weather API'],
-      githubUrl:
-        'https://github.com/a421104346/Weather_App_Development_Challenge',
-      liveUrl:
-        'https://main.d131zjotu2of9u.amplifyapp.com/',
-    },
-    {
-      id: 2,
-      title: 'Personal Website',
-      description:
-        'A responsive personal portfolio website built with React, featuring an AI chat assistant, modern design, and smooth animations. Showcases projects and skills.',
-      icon: faLaptopCode,
-      technologies: ['React', 'React Router', 'OpenAI API', 'CSS3'],
-      githubUrl: 'https://github.com/a421104346/Personal-website',
-      liveUrl: 'https://a421104346.github.io/Personal-website',
-    },
-  ];
+  const iconMap = {
+    frontend: faLaptopCode,
+    fullstack: faServer,
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -63,23 +43,36 @@ const Projects = () => {
       <div className="container">
         <h2 className="section-title">My Personal Projects</h2>
         <div className="projects-grid">
-          {projects.map(project => (
+          {portfolioProjects.map(project => (
             <div
               key={project.id}
               className={`project-card ${visibleProjects.includes(project.id) ? 'visible' : ''}`}
               data-project-id={project.id}
             >
               <div className="project-image">
-                <FontAwesomeIcon icon={project.icon} />
+                <FontAwesomeIcon
+                  icon={iconMap[project.iconKey] || faLaptopCode}
+                />
               </div>
               <div className="project-content">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+                <div className="project-header">
+                  <h3>{project.title}</h3>
+                  <span
+                    className={`project-status ${project.status === 'Live' ? 'live' : 'deploying'}`}
+                  >
+                    {project.status}
+                  </span>
+                </div>
+                <p>{project.summary}</p>
+                <div className="project-meta">
+                  <span className="project-type">{project.projectType}</span>
+                </div>
                 <div className="project-tech">
-                  {project.technologies.map(tech => (
+                  {project.techStack.map(tech => (
                     <span key={tech}>{tech}</span>
                   ))}
                 </div>
+                <p className="project-notes">{project.notes}</p>
                 <div className="project-links">
                   <a
                     href={project.githubUrl}
@@ -89,14 +82,25 @@ const Projects = () => {
                   >
                     <FontAwesomeIcon icon={faGithub} /> Code
                   </a>
-                  <a
-                    href={project.liveUrl}
-                    className="project-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FontAwesomeIcon icon={faExternalLinkAlt} /> Demo
-                  </a>
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      className="project-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon icon={faExternalLinkAlt} /> Demo
+                    </a>
+                  ) : (
+                    <a
+                      href={project.deployUrl}
+                      className="project-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon icon={faExternalLinkAlt} /> Deploy
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
