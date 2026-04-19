@@ -3,7 +3,7 @@ const portfolioProjects = [
     id: 1,
     title: 'Crawler Management Platform',
     summary:
-      'FastAPI + React + TypeScript full-stack crawler orchestration platform with JWT auth, task monitoring, and WebSocket progress updates.',
+      'A full-stack crawler platform built with FastAPI + React + TypeScript, featuring JWT auth, task orchestration, monitoring APIs, and WebSocket progress updates.',
     iconKey: 'fullstack',
     techStack: [
       'FastAPI',
@@ -14,13 +14,12 @@ const portfolioProjects = [
       'WebSocket',
     ],
     projectType: 'Full-Stack',
-    status: 'Deploying',
+    status: 'Live',
     githubUrl: 'https://github.com/a421104346/Crawler_Practice-clean2',
-    liveUrl: '',
-    deployUrl:
-      'crawler-practice-clean2-n3g7x2xll.vercel.app',
+    liveUrl: 'https://crawler-practice-clean2.vercel.app',
+    deployUrl: 'https://crawler-practice-clean2.vercel.app',
     notes:
-      'I just deployed the frontend to Vercel. There is no backend yet because the deployment is too expensive.',
+      'To keep costs reasonable, this demo currently hosts the frontend only. If you would like to explore the full experience, feel free to run the backend locally.',
   },
   {
     id: 2,
@@ -30,20 +29,19 @@ const portfolioProjects = [
     iconKey: 'frontend',
     techStack: ['Vue 3', 'TypeScript', 'Vite', 'Pinia', 'TDesign', 'GSAP'],
     projectType: 'Frontend',
-    status: 'Deploying',
+    status: 'Live',
     githubUrl:
       'https://github.com/a421104346/KeyboardDriverLearning_demo-clean',
-    liveUrl: '',
-    deployUrl:
-      'https://keyboard-driver-learning-demo-clean-javpanycn.vercel.app',
+    liveUrl: 'https://keyboard-driver-learning-demo-clean.vercel.app',
+    deployUrl: 'https://keyboard-driver-learning-demo-clean.vercel.app',
     notes:
-      'For preview mode no extra env vars are required. If SDK integration is needed, set VITE_SDK_ENABLED=true in Vercel.',
+      'Runs in preview mode by default and supports optional WebHID SDK mode with VITE_SDK_ENABLED=true.',
   },
   {
     id: 3,
     title: 'Weather App Development Challenge',
     summary:
-      'A React weather app with real-time weather search and map-focused visual presentation for responsive devices.',
+      'A React weather dashboard challenge project (originally from CodeSandbox) with search-driven weather display and responsive UI.',
     iconKey: 'frontend',
     techStack: ['React', 'JavaScript', 'CSS3', 'Weather API'],
     projectType: 'Frontend',
@@ -54,13 +52,13 @@ const portfolioProjects = [
     deployUrl:
       'https://main.d131zjotu2of9u.amplifyapp.com/',
     notes:
-      'Already publicly accessible. ',
+      'Repository is stable and publicly accessible; currently hosted on Amplify.',
   },
   {
     id: 4,
     title: 'Personal Website (This one)',
     summary:
-      'Earlier version of the personal website with AI chat and message board; suitable as a legacy milestone demo.',
+      'This is the website where I introduce myself and experiment with newly learned skills.',
     iconKey: 'frontend',
     techStack: ['React', 'React Router', 'Firebase', 'OpenAI API'],
     projectType: 'Frontend',
@@ -70,8 +68,7 @@ const portfolioProjects = [
     deployUrl:
       'https://vercel.com/new/clone?repository-url=https://github.com/a421104346/Personal-website&project-name=personal-website-legacy',
     notes:
-      'Can stay on GitHub Pages or be redeployed to Vercel for consistent domain style.',
-
+      'This is my portfolio website (the one you are viewing right now). I hope you enjoy it.',
   },
   {
     id: 5,
@@ -86,7 +83,7 @@ const portfolioProjects = [
     liveUrl: 'https://excelanalysispublicv.streamlit.app/',
     deployUrl: 'https://excelanalysispublicv.streamlit.app/',
     notes:
-      'Public showcase version focuses on English workflow and local data processing.',
+      'Latest public demo is English-focused, local-first, and deployed on Streamlit Cloud.',
   },
 ];
 

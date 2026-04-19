@@ -65,9 +65,6 @@ const Navbar = () => {
           >
             Contact
           </button>
-          <button className="nav-link" onClick={() => navigate('/messages')}>
-            Messages
-          </button>
           <button className="nav-link" onClick={() => navigate('/chat')}>
             <span>
               <FontAwesomeIcon icon={faRobot} /> AI Chat

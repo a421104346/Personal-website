@@ -2,10 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [animatedStats, setAnimatedStats] = useState({
-    experience: 0,
-    projects: 0,
-  });
   const aboutRef = useRef(null);
 
   const skills = [
@@ -14,17 +10,21 @@ const About = () => {
     'JavaScript',
     'React',
     'Vue.js',
+    'TypeScript',
     'Node.js',
+    'FastAPI',
     'Python',
-    'Git',
     'MongoDB',
     'Express.js',
+    'Streamlit',
+    'SQL (SQLite/PostgreSQL)',
+    'WebSocket',
+    'C++',
   ];
 
   const finalStats = {
     experience: 2,
-    projects: 2,
-    technologies: 5,
+    projects: 4,
   };
 
   useEffect(() => {
@@ -32,7 +32,6 @@ const About = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          animateNumbers();
         }
       },
       { threshold: 0.5 }
@@ -49,29 +48,6 @@ const About = () => {
       }
     };
   }, []);
-
-  const animateNumbers = () => {
-    const duration = 2000; // 2 seconds
-    const intervals = 60;
-    const stepTime = duration / intervals;
-
-    Object.keys(finalStats).forEach(key => {
-      const increment = finalStats[key] / intervals;
-      let current = 0;
-
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= finalStats[key]) {
-          current = finalStats[key];
-          clearInterval(timer);
-        }
-        setAnimatedStats(prev => ({
-          ...prev,
-          [key]: Math.floor(current),
-        }));
-      }, stepTime);
-    });
-  };
 
   return (
     <section id="about" className="about" ref={aboutRef}>
@@ -110,11 +86,11 @@ const About = () => {
 
           <div className="about-stats">
             <div className="stat">
-              <h3>{animatedStats.experience}+</h3>
+              <h3>{finalStats.experience}+</h3>
               <p>Years Experience</p>
             </div>
             <div className="stat">
-              <h3>{animatedStats.projects}+</h3>
+              <h3>{finalStats.projects}+</h3>
               <p>Completed Personal Projects</p>
             </div>
           </div>

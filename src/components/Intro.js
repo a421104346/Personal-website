@@ -1,6 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import profilePhoto from '../assets/profile-photo.png';
 
 const Intro = () => {
   const scrollToSection = sectionId => {
@@ -25,8 +24,7 @@ const Intro = () => {
         <p className="intro-description">
           Welcome to my personal website! This site showcases my software
           development projects and skills. You can explore my work, chat with an
-          AI assistant for questions, and leave feedback on the message board.
-          Feel free to connect with me!
+          AI assistant for questions. Feel free to connect with me!
         </p>
         <div className="intro-buttons">
           <button
@@ -45,7 +43,11 @@ const Intro = () => {
       </div>
       <div className="intro-image">
         <div className="profile-circle">
-          <FontAwesomeIcon icon={faUser} />
+          <img
+            src={profilePhoto}
+            alt="Shunyang portrait"
+            className="profile-photo"
+          />
         </div>
       </div>
     </section>

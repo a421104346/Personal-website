@@ -1,39 +1,15 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useNavigate } from 'react-router-dom';
-import {
-  faEnvelope,
-  faPhone,
-  faMapMarkerAlt,
-  faComments,
-} from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const Contact = () => {
-  const navigate = useNavigate();
-
-  const handleGoToMessageBoard = () => {
-    navigate('/messages');
-  };
-
   const contactInfo = [
     {
       icon: faEnvelope,
       label: 'Email',
       value: 'a421104346@gmail.com',
       href: 'mailto:a421104346@gmail.com',
-    },
-    {
-      icon: faPhone,
-      label: 'Phone',
-      value: '0421234567',
-      href: 'tel:+61421234567',
-    },
-    {
-      icon: faMapMarkerAlt,
-      label: 'Location',
-      value: 'Magill, 5072, SA, Australia',
-      href: null,
     },
   ];
 
@@ -59,8 +35,7 @@ const Contact = () => {
             <h3>Let's work together</h3>
             <p>
               If you have any project ideas or collaboration opportunities, feel
-              free to email me. The phone number is not real, as I believe it is
-              more dangerous to share a phone number online.
+              free to email me.
             </p>
 
             <div className="contact-details">
@@ -91,24 +66,6 @@ const Contact = () => {
                   <FontAwesomeIcon icon={social.icon} />
                 </a>
               ))}
-            </div>
-          </div>
-
-          <div className="message-board-redirect">
-            <div className="redirect-card">
-              <FontAwesomeIcon icon={faComments} className="redirect-icon" />
-              <h3>Share Your Thoughts!</h3>
-              <p>
-                If you have any suggestions, feedback, or just want to say
-                hello, please leave your opinion on our message board.
-              </p>
-              <button
-                className="btn btn-primary message-board-btn"
-                onClick={handleGoToMessageBoard}
-              >
-                <FontAwesomeIcon icon={faComments} />
-                Go to Message Board
-              </button>
             </div>
           </div>
         </div>
